@@ -18,3 +18,6 @@ import secrets
 otp = ''.join(secrets.choice("0123456789") for _ in range(4))
 
 print(otp)
+
+
+#============ This file is just for testing only ======================
