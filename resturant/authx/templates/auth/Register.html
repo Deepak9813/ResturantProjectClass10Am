@@ -1,0 +1,82 @@
+{% extends "auth_base.html" %}
+{% load static %}
+
+{% block title %}
+register
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <div class="form-container">
+                <!-- cross icon -->
+                <a href="{% url 'index_page' %}" class="text-white">
+                    <i class="fa-solid fa-x fa-xl crossHo"></i>
+                </a>
+                <p class="title">Register</p>
+                <!-- ==================== message start ============= -->
+                {% if messages %}
+                {% for m in messages %}
+                {% if m.tags == "success" %}
+                <p class="text-center text-success fs-5" id="hideMessage">{{m}}</p>
+                {% else %}
+                <p class="text-center text-danger fs-5" id="hideMessage">{{m}}</p>
+                {% endif %}
+
+                {% endfor %}
+                {% endif %}
+                <!-- ==================== message end ============== -->
+
+
+                <form class="form" method="POST" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <label for="fName">Full Name</label>
+                        <input type="text" name="fullName" id="fName" placeholder="">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="PhoneNo">Phone Number</label>
+                        <input type="number" name="phoneNumber" id="PhoneNo" placeholder="">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="uname">Username</label>
+                        <input type="text" name="username" id="uname" placeholder="">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" placeholder="">
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" placeholder="" class="passwordHo">
+                        <!-- show hide eye for password -->
+                        <div class="showHideEye">
+                            <i class="fa-solid fa-eye-slash"></i>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="confirmPassword" placeholder=""
+                            class="passwordHo">
+                        <!-- show hide eye for password -->
+                        <div class="showHideEye">
+                            <i class="fa-solid fa-eye-slash"></i>
+                        </div>
+                    </div>
+                    <button class="sign mt-3">Sign up</button>
+                </form>
+
+                <p class="signup mt-3">Already have an account?
+                    <a rel="noopener noreferrer" href="{% url 'login' %}" class="">Sign in</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

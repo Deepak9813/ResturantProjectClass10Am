@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            background: #121212;
+            color: white;
+        }
+
+        .form-container {
+            background: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-avatar {
+            color: #6c757d;
+        }
+
+        .detail-group {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .detail-group:last-child {
+            border-bottom: none;
+        }
+
+        .crossHo:hover {
+            color: #ffcc00;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <div class="form-container p-4">
+
+                    <!-- Back Button -->
+                    <a href="{% url 'menu_page' %}" class="text-white mb-3 d-inline-block">
+                        <i class="fa-solid fa-arrow-left fa-xl crossHo"></i>
+                    </a>
+
+                    <!-- Profile Header -->
+                    <div class="text-center mb-4">
+                        {% if pro.profile_pic %}
+                        <div class="profile-avatar mb-3">
+                            <img src="{{pro.profile_pic.url}}" alt=""
+                                style="height: 100px; width: 100px; border-radius: 50%;">
+                        </div>
+                        {% else %}
+                        <!-- ===== default profile ===== -->
+                        <div class="profile-avatar mb-3">
+                            <i class="fa-solid fa-circle-user fa-5x text-secondary"></i>
+                        </div>
+                        {% endif %}
+
+
+
+                        <!-- <h2 class="mb-0">{{request.user.full_name}}</h2> -->
+                        <h2 class="mb-0">{{pro.user.full_name}}</h2>
+                        <!-- <p class="text-white-50">@{{request.user.username}}</p> -->
+                        <p class="text-white-50">@{{pro.user.username}}</p>
+
+                    </div>
+
+                    <hr class="text-secondary">
+
+                    <!-- Profile Details -->
+                    <div class="profile-details">
+
+                        <div class="detail-group mb-3">
+                            <label class="text-white-50 small d-block">Email Address</label>
+                            <span class="fs-5">{{request.user.email}}</span>
+                        </div>
+
+                        <div class="detail-group mb-3">
+                            <label class="text-white-50 small d-block">Phone Number</label>
+                            <span class="fs-5">{{request.user.phone_number}}</span>
+                        </div>
+
+                        <!-- DOB -->
+                        <div class="detail-group mb-3">
+                            <label class="text-white-50 small d-block">Date of Birth</label>
+                            <span class="fs-6">{{pro.date_of_birth}}</span>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="detail-group mb-3">
+                            <label class="text-white-50 small d-block">Gender</label>
+                            <span class="fs-6">{{pro.gender}}</span>
+                        </div>
+
+                        <div class="detail-group mb-3">
+                            <label class="text-white-50 small d-block">Created_at</label>
+                            <!-- <span class="fs-6">{{pro.created_at}}</span> -->
+                            <span class="fs-6">{{pro.created_at.date}}</span>
+                        </div>
+
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="mt-4 d-grid gap-2">
+
+                        <a href="{% url 'edit_profile' %}" class="btn btn-outline-warning">
+                            <i class="fa-regular fa-pen-to-square"></i> Edit Profile
+                        </a>
+
+                        <a href="{% url 'logout' %}" class="btn btn-outline-danger">
+                            <i class="fa-solid fa-right-from-bracket me-2"></i>Logout
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
