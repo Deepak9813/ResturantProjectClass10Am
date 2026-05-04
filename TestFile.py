@@ -20,4 +20,7 @@ otp = ''.join(secrets.choice("0123456789") for _ in range(4))
 print(otp)
 
 
-#============ This file is just for testing only ======================
+'''
+This is only for testing purpose.
+Here we learn otp generate using secrets module
+'''
